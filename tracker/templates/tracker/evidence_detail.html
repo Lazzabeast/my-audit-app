@@ -9,6 +9,9 @@
 			<p><b>Requested date:</b> {{ evidence.created_date }}</p>
 			<p><b>Requested by:</b> {{ evidence.requestor }} </p>
 		</div>
-		{% endif %}	
+		{% endif %}
+	{% if user.is_authenticated %}
+		<a class="btn btn-default" href="{% url 'evidence_edit' pk=evidence.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+	{% endif %}
     </div>
 {% endblock %}
