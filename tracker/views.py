@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Evidence
 from .forms import EvidenceForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import views
+
 
 # Create your views here.
 def post_list(request):
@@ -11,7 +14,7 @@ def post_list(request):
 def evidence_detail(request, pk):
 	evidence = get_object_or_404(Evidence, pk=pk)
 	return render(request, 'tracker/evidence_detail.html', {'evidence':evidence})
-
+@login_required
 def evidence_new(request):
 	if request.method == "POST":
 		form = EvidenceForm(request.POST)
@@ -25,7 +28,8 @@ def evidence_new(request):
 	else:
 		form = EvidenceForm()
 	return render(request, 'tracker/evidence_edit.html', {'form': form})
-	
+
+@login_required	
 def evidence_edit(request, pk):
     evidence = get_object_or_404(Evidence, pk=pk)
     if request.method == "POST":
