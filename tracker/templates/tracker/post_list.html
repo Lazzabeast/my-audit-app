@@ -1,16 +1,9 @@
-<html>
-    <head>
-        <title>Evidence Tracker</title>
-    </head>
-    <body>
-        <div>
-            <h1><a href="">Evidence Tracker</a></h1>
-			{% for evidence in evidences %}
-				<div>
-					<h2><a href=""> {{evidence.title }} </a></h2>
-					<p>Created: {{ evidence.created_date }}</p>					
-				</div>				
-			{% endfor %}
-        </div>
-    </body>
-</html>
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+	{% for evidence in evidences %}
+		<div class="Evidence">
+			<h3><a href="{% url 'evidence_detail' pk=evidence.pk %}">{{ evidence.title }}</a></h3>
+		</div>
+	{% endfor %}
+{% endblock %}

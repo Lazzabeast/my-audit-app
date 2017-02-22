@@ -1,0 +1,14 @@
+{% extends 'tracker/base.html' %}
+
+{% block content %}
+    <div class="evidence">
+        <h1>{{ evidence.title }}</h1>
+        <p>{{ evidence.text|linebreaksbr }}</p>
+        {% if evidence.created_date %}
+		<div class="date">
+			<p><b>Requested date:</b> {{ evidence.created_date }}</p>
+			<p><b>Requested by:</b> {{ evidence.requestor }} </p>
+		</div>
+		{% endif %}	
+    </div>
+{% endblock %}
