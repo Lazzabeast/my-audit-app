@@ -8,6 +8,8 @@
 		<div class="date">
 			<p><b>Requested date:</b> {{ evidence.created_date }}</p>
 			<p><b>Requested by:</b> {{ evidence.requestor }} </p>
+			<p><b>Owner:</b> {{ evidence.owner }} </p>
+			<p><b>Required by:</b> {{ evidence.required_date }} </p>
 		</div>
 		{% endif %}
 	{% if user.is_authenticated %}

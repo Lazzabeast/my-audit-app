@@ -3,14 +3,19 @@ from django.utils import timezone
 from .models import Evidence
 from .forms import EvidenceForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import views
+from django.contrib.auth import logout
 
 
 # Create your views here.
+def home_page(request):
+	return render(request, 'tracker/home_page.html')
+
+@login_required
 def post_list(request):
 	evidences = Evidence.objects.filter(created_date__lte=timezone.now()).order_by('created_date')
 	return render(request, 'tracker/post_list.html', {'evidences':evidences})
 
+@login_required
 def evidence_detail(request, pk):
 	evidence = get_object_or_404(Evidence, pk=pk)
 	return render(request, 'tracker/evidence_detail.html', {'evidence':evidence})
@@ -43,3 +48,7 @@ def evidence_edit(request, pk):
     else:
         form = EvidenceForm(instance=evidence)
     return render(request, 'tracker/evidence_edit.html', {'form': form})
+	
+def log_out(request):
+	logout(request)
+	return render(request, 'tracker/log_out.html')
