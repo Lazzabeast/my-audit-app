@@ -2,8 +2,11 @@
 
 {% block content %}
 
-<h2>Welcome, please log in to continue</h2>
+	{% if user.is_authenticated %}
+		<h2>Hi there {{ username}}!</h2>
+	{% else %}
+		<h2>Welcome, please log in to continue</h2>
+	{% endif %}
 
-<h3><a href = "/posts"> Evidence Tracker </a> </h3>
-
+	<h3><a href = "/posts"> Evidence Tracker </a> </h3>
 {% endblock %}

@@ -1,9 +1,20 @@
 {% extends 'tracker/base.html' %}
 
 {% block content %}
-	{% for evidence in evidences %}
-		<div class="Evidence">
-			<h3><a href="{% url 'evidence_detail' pk=evidence.pk %}">{{ evidence.title }}</a></h3>
-		</div>
-	{% endfor %}
+	
+	<table style = "width:100%">
+		<tr>
+			<th>Evidence</th>
+			<th>System</th>
+			<th>Evidence Owner</th>
+			<th>Required Date</th>
+		</tr>
+		{% for evidence in evidences %}
+			<tr><td><a href="{% url 'evidence_detail' pk=evidence.pk %}">{{ evidence.title }}</a></td>
+			<td>{{evidence.system}}</td>
+			<td>{{evidence.owner}}</td>
+			<td>{{evidence.required_date}}</td>
+			</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

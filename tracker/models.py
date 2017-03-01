@@ -17,3 +17,9 @@ class Evidence(models.Model):
 		
 	def __str__(self):
 		return self.title
+
+
+class Engagements(models.Model):
+	clientName = models.CharField(max_length = 30)
+	engagementType = models.CharField(max_length  = 30)
+	

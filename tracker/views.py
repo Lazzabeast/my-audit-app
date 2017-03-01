@@ -8,7 +8,8 @@ from django.contrib.auth import logout
 
 # Create your views here.
 def home_page(request):
-	return render(request, 'tracker/home_page.html')
+	username = request.user.get_username()
+	return render(request, 'tracker/home_page.html', {'username':username})
 
 @login_required
 def post_list(request):
